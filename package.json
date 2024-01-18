@@ -26,7 +26,8 @@
     "cmdk": "^0.2.0",
     "cssnano": "^6.0.3",
     "date-fn": "^0.0.2",
-    "jwt-decode": "^4.0.0",
+    "jwt-decode": "^3.1.2",
+    "lodash": "^4.17.21",
     "lucide": "^0.311.0",
     "lucide-react": "^0.311.0",
     "react": "^18.2.0",
@@ -36,21 +37,25 @@
     "react-hook-form": "^7.49.3",
     "react-router-dom": "^6.21.2",
     "tailwind-merge": "^2.2.0",
-    "vite-plugin-svgr": "^4.2.0",
     "vite-tsconfig-paths": "^4.2.3",
     "zod": "^3.22.4"
   },
   "devDependencies": {
+    "@tailwindcss/typography": "^0.5.10",
+    "@types/lodash": "^4.14.202",
     "@types/react": "^18.2.43",
     "@types/react-dom": "^18.2.17",
     "@typescript-eslint/eslint-plugin": "^6.14.0",
     "@typescript-eslint/parser": "^6.14.0",
     "@vitejs/plugin-react": "^4.2.1",
+    "autoprefixer": "^10.4.17",
     "eslint": "^8.55.0",
     "eslint-plugin-react-hooks": "^4.6.0",
     "eslint-plugin-react-refresh": "^0.4.5",
+    "postcss": "^8.4.33",
     "tailwindcss": "^3.4.1",
     "typescript": "^5.2.2",
-    "vite": "^5.0.8"
+    "vite": "^5.0.8",
+    "vite-plugin-svgr": "^4.2.0"
   }
 }
