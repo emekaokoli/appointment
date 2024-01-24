@@ -1,30 +1,24 @@
-import { Navigate, Route, Routes } from 'react-router-dom'
+import { ToastProvider } from '@/common/toast'
+import useAuth from '@/components/hooks/useAuth'
+import { ErrorBoundary } from 'react-error-boundary'
+import { useRoutes } from 'react-router-dom'
 import './App.css'
-import ErrorPage from './components/NotFound'
-import ProtectedRoutes from './components/ProtectedRoutes'
-import { UserLogin } from './components/user-login'
+import { FallBackError } from './errors/FallBackError'
+import { routes } from './routes/routes'
+
+
 
 function App() {
+  const { isLoggedIn } = useAuth()
+  const routing = useRoutes(routes(isLoggedIn));
 
   return (
     <main>
-      <Routes>
-        <Route path="/login" element={<UserLogin />} />
-        <Route path="/" element={<Navigate to="/login" />} />
-
-        {/* private routes */}
-        <Route
-          path="/appointments"
-          element={
-            <ProtectedRoutes>
-              <div>appointments</div>
-            </ProtectedRoutes>
-          }
-        />
-        <Route path="*" element={<ErrorPage />} />
-
-      </Routes>
-
+      <ToastProvider>
+        <ErrorBoundary FallbackComponent={FallBackError}>
+          {routing}
+        </ErrorBoundary>
+      </ToastProvider>
     </main>
   )
 }

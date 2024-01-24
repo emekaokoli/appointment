@@ -20,7 +20,7 @@ const removeToken = (navigate?: NavigateFunction) => {
   localStorage.removeItem('accesstoken');
   localStorage.removeItem('authenticated');
   if (navigate) {
-    navigate('/login');
+    navigate('/auth/login');
   }
 };
 
@@ -32,7 +32,7 @@ const isLoggedIn = (authenticated: boolean) => {
   localStorage.setItem('authenticated', JSON.stringify(authenticated));
 };
 
-function isAuthenticated() {
+function isAuthenticated(): boolean {
   try {
     const decodedToken = getDecodedJwt();
     if (!isEmpty(decodedToken)) {

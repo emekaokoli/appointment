@@ -1,4 +1,4 @@
-export const API_URL =
-  import.meta.env.MODE === 'development'
-    ? '/api/v1/'
-    : 'http://IP here:9001/api/v1/';
+export const API_URL = '/api/';
+// import.meta.env.MODE === 'development'
+//   ? '/api/'
+//   : 'http://IP here:9001/api/v1/';
