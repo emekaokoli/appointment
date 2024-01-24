@@ -4,15 +4,14 @@ import { LoadingButton } from "@/common/ButtonLoading";
 import { Button } from "@/common/button";
 import { Input } from "@/common/input";
 import { Label } from "@/common/label";
-import { initialLoginData, loginForm } from "@/common/schema/login.schema";
+import { initialLoginData, loginForm, loginFormTypes } from "@/common/schema/login.schema";
 import useAuth from '@/components/hooks/useAuth';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { EyeIcon, EyeOffIcon } from "lucide-react";
 import { useEffect, useState } from "react";
 import { useForm } from 'react-hook-form';
 import { Link, useLocation, useNavigate } from "react-router-dom";
-import { useLogin } from "./hooks/useLogin";
-import { loginPayload } from "./interfaces/loginPayload";
+import { useLogin } from "../../components/hooks/useLogin";
 
 
 
@@ -22,15 +21,15 @@ export function UserLogin() {
   const navigate = useNavigate()
   const [showPassword, setShowPassword] = useState(false);
 
-  const { handleSubmit, register, formState: { errors, isSubmitting, isValid } } = useForm<loginPayload>({
+  const { handleSubmit, register, formState: { errors, isSubmitting, isValid } } = useForm<loginFormTypes>({
     defaultValues: initialLoginData,
     resolver: zodResolver(loginForm),
   });
-  const from = state?.path || '/appointments';
+  const from = state?.path || '/dashboard';
 
   const { signIn, isPending } = useLogin();
 
-  const onSubmit = (data: loginPayload) => {
+  const onSubmit = (data: loginFormTypes) => {
     signIn({ payload: data })
     navigate(from, { replace: true })
   };
@@ -55,7 +54,7 @@ export function UserLogin() {
           <h1 className="text-2xl font-bold text-center mb-1">Sign In</h1>
           <p className="text-center text-sm mb-8">
             Is this your first time here?
-            <Link className="text-green-600 hover:underline" to='/register'>
+            <Link className="text-green-600 hover:underline" to='/create-account'>
               Create an account instead
             </Link>
           </p>
@@ -68,10 +67,11 @@ export function UserLogin() {
                 <div className="mt-1">
                   <Input {...register('email')}
                     id="email" autoCapitalize='none'
-                    autoCorrect='off' placeholder="johndoe@xyz.com" type="email" disabled={isSubmitting}
+                    autoCorrect='off' placeholder="johndoe@xyz.com" type="email" disabled={isSubmitting} className="w-full"
+                    size={200}
                   />
                 </div>
-                {errors?.email ? <p className='relative text-red-500 font-normal text-xl font-poppins tracking-tight'>
+                {errors?.email ? <p className='relative text-red-500 font-normal text-xl font-microGrotesk tracking-tight'>
                   {errors?.email.message}
                 </p> : null}
               </div>
@@ -79,12 +79,16 @@ export function UserLogin() {
                 <Label className="block text-sm font-medium text-gray-700" htmlFor="password">
                   Password
                 </Label>
-                <div className="mt-1 relative">
+                <div className="mt-1 relative ">
                   <Input 	{...register('password')}
                     autoCapitalize='none'
                     autoCorrect='off'
                     type={showPassword ? 'text' : 'password'}
-                    id='password' placeholder="enter password" disabled={isSubmitting}
+                    id='password'
+                    placeholder="password"
+                    disabled={isSubmitting}
+                    className="w-full"
+                    size={200}
                   />
                   <div
                     className='absolute inset-y-0 right-0 pr-3 flex items-center cursor-pointer self-center'
@@ -98,7 +102,7 @@ export function UserLogin() {
                   </div>
                 </div>
               </div>
-              <div className="flex items-center justify-between">
+              <div className="flex items-center justify-end w-full">
                 <Link className="text-sm text-gray-600 hover:underline" to='forgot-password'>
                   Forgot Password?
                 </Link>

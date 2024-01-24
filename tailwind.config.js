@@ -10,6 +10,7 @@ export default {
       },
     },
     colors: {
+      darkprimary: '#3D874E',
       primary: '#103C1B',
       background: '#F5F5F5',
       light: '#FFFFFF',
@@ -18,10 +19,13 @@ export default {
       secondary: '#FFA500',
       link: '#103C1B',
       subtitle: '#6E8877',
+      neutral: '#EEEEE9',
+      lightprimary: '#E7FBEC',
     },
     extend: {
       fontFamily: {
         microGrotesk: ['Micro Grotesk', 'sans-serif'],
+        generalSans: ['General Sans', 'sans-serif'],
       },
     },
     screens: {

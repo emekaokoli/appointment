@@ -25,7 +25,7 @@ export const getRequest = async <R>({ url }: { url: string }) => {
 
 interface WithParams {
   url: string;
-  params: string;
+  params: number;
 }
 
 export const getRequestWithParams = async <R>({
