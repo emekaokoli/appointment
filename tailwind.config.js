@@ -21,6 +21,8 @@ export default {
       subtitle: '#6E8877',
       neutral: '#EEEEE9',
       lightprimary: '#E7FBEC',
+      alert:'#E45B3D',
+      ghost:'#3B3D24'
     },
     extend: {
       fontFamily: {

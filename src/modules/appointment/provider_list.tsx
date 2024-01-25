@@ -1,8 +1,11 @@
-import { Loading } from "@/common/Loading"
-import { useGetAllProviders } from "@/components/hooks/useGetAllProviders"
-import { Card } from "../Card/Card"
+import { Loading } from "@/common/Loading";
+import { useGetAllProviders } from "@/components/hooks/useGetAllProviders";
+import { Card } from "../Card/Card";
 
-export function Appointment() {
+export function ProviderList() {
+
+
+
 
   const { providers, isLoading, isError, error } = useGetAllProviders()
 
@@ -15,7 +18,7 @@ export function Appointment() {
   return (
     <div className="grid grid-cols-3 justify-between items-center m-5 gap-2">
       {providers?.map(({ name, bio, title, provider_id }) => (
-        <Card key={provider_id} bio={bio} title={title} name={name} />
+        <Card key={provider_id} bio={bio} title={title} name={name} providerId={Number(provider_id)} />
       ))}
     </div>
   )

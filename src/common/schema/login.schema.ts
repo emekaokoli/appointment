@@ -10,7 +10,7 @@ export const loginForm = z.object({
     .string()
     .email('email must be a valid email')
     .refine((val) => val !== undefined, { message: 'Email field is required' }),
-  password: z.string().min(3, 'password must be at least 6 characters long'),
+  password: z.string().min(3, 'password must be at least 3 characters long'),
 });
 
 export type loginFormTypes = z.infer<typeof loginForm>;
