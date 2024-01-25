@@ -2,7 +2,6 @@ import { useToast } from '@/common/use-toast';
 import { loginPayload } from '@/components/interfaces/login';
 import { SuccessPayload } from '@/components/interfaces/success';
 import { authUtils } from '@/utils/auth.util';
-import handleApiError from '@/utils/handle-api-errors.helper';
 import { postRequest } from '@/utils/http-actions.helpers';
 import { useMutation, useQueryClient } from '@tanstack/react-query';
 import { useLocation, useNavigate } from 'react-router-dom';
@@ -31,9 +30,8 @@ export const useLogin = () => {
 				navigate(from, { replace: true });
 			}
 		},
-		onError: (error: any) => {
-			const errors = handleApiError(error)
-			console.log({ errors });
+		onError: (error) => {
+			console.log({ error });
 
 			if (error) {
 				toast({
@@ -45,10 +43,7 @@ export const useLogin = () => {
 		},
 		onSettled: () => {
 			queryClient.invalidateQueries({ queryKey: ['login'] });
-		},
-		// onMutate: () => {
-		// 	navigate(from, { replace: true });
-		// },
+		}
 	});
 
 	return {
