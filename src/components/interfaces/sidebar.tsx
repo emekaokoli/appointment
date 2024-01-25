@@ -20,7 +20,7 @@ export const sidebars: SidebarProps[] = [
   {
     icon: CalendarDays,
     title: 'Appointments',
-    pathUrl: '/appointments',
+    pathUrl: '/providers',
   },
 
 ];

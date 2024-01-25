@@ -1,6 +1,6 @@
 import TempleHS from "@/assets/svg/logo.svg?react";
 import { sidebars } from '@/components/interfaces/sidebar';
-import { SideBarItems } from '@/components/SideBarItems';
+import { SideBarItems } from '@/components/Layout/SideBarItems';
 
 
 const Sidebar = () => (

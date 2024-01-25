@@ -10,11 +10,7 @@ COPY . /app/
 COPY ./package.json ./
 # install dependencies
 RUN npm install
-# add enviroment variable
-ARG VITE_MAPBOX_TOKEN \ VITE_CLIENT_ID
-ARG VITE_CLIENT_ID
-ENV VITE_CLIENT_ID=$VITE_CLIENT_ID
-ENV VITE_MAPBOX_TOKEN=$VITE_MAPBOX_TOKEN
+
 # Building our application
 RUN npm run build
 # Fetching the latest nginx image

@@ -1,4 +1,3 @@
-import { User } from '@/components/interfaces/user';
 import jwtDecode, { type JwtPayload } from 'jwt-decode';
 import { isEmpty } from 'lodash';
 import { NavigateFunction } from 'react-router-dom';
@@ -6,6 +5,8 @@ import { NavigateFunction } from 'react-router-dom';
 export interface decodedUser extends JwtPayload {
   email: string;
   date_of_birth: string;
+  user_id: number;
+  created_at: string;
 }
 
 const getToken = () => {
@@ -59,18 +60,6 @@ function getDecodedJwt(tkn = ''): decodedUser {
   }
 }
 
-const getSavedUser = () => {
-  const storedUser = localStorage.getItem('user');
-  if (storedUser !== null && storedUser !== 'undefined') {
-    return JSON.parse(storedUser);
-  }
-  return null;
-};
-
-const saveUserData = (user: User) => {
-  localStorage.setItem('user', JSON.stringify(user));
-};
-
 export const authUtils = {
   getDecodedJwt,
   removeToken,
@@ -78,6 +67,4 @@ export const authUtils = {
   getToken,
   isLoggedIn,
   isAuthenticated,
-  getSavedUser,
-  saveUserData,
 };

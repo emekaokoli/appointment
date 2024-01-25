@@ -2,6 +2,7 @@ import { useToast } from '@/common/use-toast';
 import { loginPayload } from '@/components/interfaces/login';
 import { SuccessPayload } from '@/components/interfaces/success';
 import { authUtils } from '@/utils/auth.util';
+import handleApiError from '@/utils/handle-api-errors.helper';
 import { postRequest } from '@/utils/http-actions.helpers';
 import { useMutation, useQueryClient } from '@tanstack/react-query';
 import { useLocation, useNavigate } from 'react-router-dom';
@@ -25,23 +26,29 @@ export const useLogin = () => {
 		},
 		onSuccess: (values) => {
 			const accessToken = values?.accessToken;
-
-			setToken(accessToken);
-			navigate(from, { replace: true });
+			if (accessToken) {
+				setToken(accessToken);
+				navigate(from, { replace: true });
+			}
 		},
-		onError: (error) => {
-			toast({
-				variant: 'destructive',
-				title: 'Login failed',
-				description: error.message || 'An unexpected error occurred',
-			});
+		onError: (error: any) => {
+			const errors = handleApiError(error)
+			console.log({ errors });
+
+			if (error) {
+				toast({
+					variant: 'destructive',
+					title: 'Login failed',
+					description: error.message || 'An unexpected error occurred',
+				});
+			}
 		},
 		onSettled: () => {
 			queryClient.invalidateQueries({ queryKey: ['login'] });
 		},
-		onMutate: () => {
-			navigate(from, { replace: true });
-		},
+		// onMutate: () => {
+		// 	navigate(from, { replace: true });
+		// },
 	});
 
 	return {

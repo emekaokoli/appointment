@@ -32,9 +32,7 @@ export const getRequestWithParams = async <R>({
   url,
   params,
 }: WithParams): Promise<R> => {
-  const response = await fetchApi.get<R>(url, { params });
-
-  const { data } = response;
+  const { data } = await fetchApi.get<R>(url, { params });
 
   return data;
 };

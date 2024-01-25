@@ -8,8 +8,10 @@ export type CardProps = {
   bio: string
   title: string
   name: string
+  providerId: number
 }
-export function Card({ name, bio, title }: CardProps) {
+export function Card({ name, bio, title, providerId }: CardProps) {
+
   return (
     <div className="max-w-md mx-auto bg-white rounded-lg shadow-md p-4">
       <div className="flex justify-between items-center mb-4">
@@ -48,7 +50,7 @@ export function Card({ name, bio, title }: CardProps) {
           </Button>
         </div>
       </div>
-      <Link className="text-xs text-darkprimary hover:text-primary" to='appointment/provider/profile'>
+      <Link className="text-xs text-darkprimary hover:text-primary" to={`/providers/${providerId}/available-time-slots`} >
         Check Full profile and availability
       </Link>
     </div>

@@ -1,8 +1,7 @@
-import Layout from '@/components/MainLayout';
+import Layout from '@/components/Layout/MainLayout';
 import ErrorPage from '@/components/NotFound';
-import { Appointment } from '@/modules/appointment/appointment';
-import { AppointmentDetails } from '@/modules/appointment/appointment_details';
-import { NewAppointment } from '@/modules/appointment/new_appointment';
+import { Scheduler } from '@/modules/appointment/calender';
+import { ProviderList } from '@/modules/appointment/provider_list';
 import { CreateAccount } from '@/modules/auth/Register';
 import { UserLogin } from '@/modules/auth/login';
 import { Dashboard } from '@/modules/dashboard/dashboard';
@@ -14,9 +13,9 @@ export const routes = (isAuthenticated: boolean) => [
     element: isAuthenticated ? <Layout /> : <Navigate to="/auth/login" />,
     children: [
       { path: 'dashboard', element: <Dashboard /> },
-      { path: 'appointments', element: <Appointment /> },
-      { path: 'appointments/:id', element: <AppointmentDetails /> },
-      { path: 'appointments/schedule-appointment', element: <NewAppointment /> },
+      { path: 'providers', element: <ProviderList /> },
+      { path: 'providers/:provider_id/available-time-slots', element: <Scheduler /> },
+      // { path: 'appointments/schedule-appointment', element: <NewAppointment /> },
       { path: '*', element: <ErrorPage /> },
     ],
   },
