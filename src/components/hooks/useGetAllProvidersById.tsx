@@ -1,19 +1,15 @@
-import { getRequestWithParams } from '@/utils/http-actions.helpers';
+import { Booked, BookedResponse } from '@/components/interfaces/book-appointment';
+import fetchApi from '@/utils/api.utils';
 import { useQuery } from '@tanstack/react-query';
 
-
-
 export function useGetAllProvidersById(providerId: number) {
-  const { data: providers, ...rest } = useQuery({
-    queryKey: [{ providerId }],
-    queryFn: () => getRequestWithParams({
-      url: '/providers',
-      params: providerId
-    }),
-    staleTime: Infinity,
+  const { data, ...rest } = useQuery<BookedResponse>({
+    queryKey: ['bookedSlots', providerId],
+    queryFn: () => fetchApi.get(`/appointments/booked/${providerId}`),
+    staleTime: 30 * 1000,
   });
   return {
-    providers,
-    rest
+    bookedSlots: data?.data?.data?.results as Booked[],
+    ...rest
   }
 }

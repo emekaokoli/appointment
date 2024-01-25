@@ -1,30 +1,130 @@
-# React + TypeScript + Vite
+# A simple appointment booking application that lets users book an appointment, and providers manage their schedule.
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
 
-Currently, two official plugins are available:
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+## Project directory
 
-## Expanding the ESLint configuration
+```bash
 
-If you are developing a production application, we recommend updating the configuration to enable type aware lint rules:
+📦src
+ ┣ 📂assets
+ ┃ ┣ 📂@types
+ ┃ ┃ ┗ 📜svg.d.ts
+ ┃ ┣ 📂svg
+ ┃ ┃ ┣ 📜logo.svg
+ ┃ ┃ ┗ 📜reschedule.svg
+ ┃ ┗ 📜index.ts
+ ┣ 📂common
+ ┃ ┣ 📂lib
+ ┃ ┃ ┗ 📂utils
+ ┃ ┃ ┃ ┗ 📜utils.ts
+ ┃ ┣ 📂schema
+ ┃ ┃ ┣ 📜create_appointment.schema.ts
+ ┃ ┃ ┣ 📜login.schema.ts
+ ┃ ┃ ┗ 📜register.schema.ts
+ ┃ ┣ 📜avatar.tsx
+ ┃ ┣ 📜badge.tsx
+ ┃ ┣ 📜button.tsx
+ ┃ ┣ 📜ButtonLoading.tsx
+ ┃ ┣ 📜dialog.tsx
+ ┃ ┣ 📜dropdown-menu.tsx
+ ┃ ┣ 📜input.tsx
+ ┃ ┣ 📜label.tsx
+ ┃ ┣ 📜Loading.tsx
+ ┃ ┣ 📜NameAvatar.tsx
+ ┃ ┣ 📜NotFound.tsx
+ ┃ ┣ 📜sheet.tsx
+ ┃ ┣ 📜toast.tsx
+ ┃ ┣ 📜toaster.tsx
+ ┃ ┗ 📜use-toast.ts
+ ┣ 📂components
+ ┃ ┣ 📂hooks
+ ┃ ┃ ┣ 📜useAuth.tsx
+ ┃ ┃ ┣ 📜useBookAppointment.tsx
+ ┃ ┃ ┣ 📜useGetAllProviders.tsx
+ ┃ ┃ ┣ 📜useGetAllProvidersById.tsx
+ ┃ ┃ ┣ 📜useGetCurrentProvider.tsx
+ ┃ ┃ ┣ 📜useLogin.tsx
+ ┃ ┃ ┗ 📜useRegister.tsx
+ ┃ ┣ 📂interfaces
+ ┃ ┃ ┣ 📜book-appointment.tsx
+ ┃ ┃ ┣ 📜calender.tsx
+ ┃ ┃ ┣ 📜error.ts
+ ┃ ┃ ┣ 📜login.ts
+ ┃ ┃ ┣ 📜providers.tsx
+ ┃ ┃ ┣ 📜sidebar.tsx
+ ┃ ┃ ┣ 📜success.ts
+ ┃ ┃ ┗ 📜user.ts
+ ┃ ┣ 📂Layout
+ ┃ ┃ ┣ 📜Header.tsx
+ ┃ ┃ ┣ 📜MainLayout.tsx
+ ┃ ┃ ┣ 📜Sidebar.tsx
+ ┃ ┃ ┗ 📜SideBarItems.tsx
+ ┃ ┣ 📂modals
+ ┃ ┃ ┣ 📜event_info.tsx
+ ┃ ┃ ┣ 📜event_Info_modal.tsx
+ ┃ ┃ ┗ 📜new_appointment.tsx
+ ┃ ┣ 📜Avatar.tsx
+ ┃ ┗ 📜NotFound.tsx
+ ┣ 📂constants
+ ┃ ┗ 📜basePath.ts
+ ┣ 📂context
+ ┃ ┗ 📜PageTitleContext.tsx
+ ┣ 📂errors
+ ┃ ┣ 📜DisplayError.tsx
+ ┃ ┗ 📜FallBackError.tsx
+ ┣ 📂modules
+ ┃ ┣ 📂appointment
+ ┃ ┃ ┣ 📜calender.tsx
+ ┃ ┃ ┗ 📜provider_list.tsx
+ ┃ ┣ 📂auth
+ ┃ ┃ ┣ 📜login.tsx
+ ┃ ┃ ┗ 📜Register.tsx
+ ┃ ┣ 📂Card
+ ┃ ┃ ┗ 📜Card.tsx
+ ┃ ┗ 📂dashboard
+ ┃ ┃ ┗ 📜dashboard.tsx
+ ┣ 📂routes
+ ┃ ┗ 📜routes.tsx
+ ┣ 📂utils
+ ┃ ┣ 📜api.utils.ts
+ ┃ ┣ 📜auth.util.ts
+ ┃ ┣ 📜date.util.ts
+ ┃ ┗ 📜http-actions.helpers.ts
+ ┣ 📜App.css
+ ┣ 📜App.tsx
+ ┣ 📜index.css
+ ┣ 📜main.tsx
+ ┗ 📜vite-env.d.ts
 
-- Configure the top-level `parserOptions` property like this:
-
-```js
-export default {
-  // other rules...
-  parserOptions: {
-    ecmaVersion: 'latest',
-    sourceType: 'module',
-    project: ['./tsconfig.json', './tsconfig.node.json'],
-    tsconfigRootDir: __dirname,
-  },
-}
 ```
 
-- Replace `plugin:@typescript-eslint/recommended` to `plugin:@typescript-eslint/recommended-type-checked` or `plugin:@typescript-eslint/strict-type-checked`
-- Optionally add `plugin:@typescript-eslint/stylistic-type-checked`
-- Install [eslint-plugin-react](https://github.com/jsx-eslint/eslint-plugin-react) and add `plugin:react/recommended` & `plugin:react/jsx-runtime` to the `extends` list
+### Install dependencies
+``
+pnpm intall
+``
+### Run the app
+``
+pnpm  dev
+``
+### Production build
+``
+pnpm  build
+``
+
+### Live demo frontend
+https://booking-app-frontend-mu.vercel.app/
+
+### Live demo Backend 
+https://appointment-api-6tdx.onrender.com
+
+see backend docs for endpoints.
+
+### Local 
+http://localhost:3000/
+
+# Please Note:
+
+The token last for only 4 before you login again.
+
+if after login you see 404 kindly refresh the past for the token to refresh.

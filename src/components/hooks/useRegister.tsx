@@ -1,7 +1,6 @@
 import { Register } from '@/common/schema/register.schema';
 import { useToast } from '@/common/use-toast';
 import { SuccessPayload } from '@/components/interfaces/success';
-import handleApiError from '@/utils/handle-api-errors.helper';
 import { postRequest } from '@/utils/http-actions.helpers';
 import { useMutation, useQueryClient } from '@tanstack/react-query';
 import { useLocation, useNavigate } from 'react-router-dom';
@@ -31,12 +30,10 @@ export const useRegister = () => {
       });
     },
     onError: (error) => {
-      const errors = handleApiError(error);
-
       toast({
         variant: 'destructive',
-        title: 'Login failed',
-        description: errors?.message || error.message || 'An unexpected error occurred',
+        title: 'Error',
+        description: error?.message || 'An unexpected error occurred',
       });
     },
     onSettled: () => {

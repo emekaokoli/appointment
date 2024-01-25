@@ -1,21 +1,34 @@
-export enum VisitReason {
-  FollowUp = "Follow-up on recent blood test results",
-  Consultation = "Consultation",
-  General = "I am not sure",
-  Others = "Others"
-}
+
 
 export type BookingPayload = {
   provider_id: number,
   user_id: number,
-  start_time: string
-  end_time: string,
-  reason_for_visit: VisitReason
-  remark: string
+  start_time: Date
+  end_time: Date,
+  reason_for_visit: string | string[]
+  remark?: string
 }
 
 export type BookingResponse = {
   data: {
     message: string
+  }
+}
+
+export type Booked = {
+  appointment_id: number,
+  user_id: number
+  email: string
+  start_time: Date
+  end_time: Date
+  reason_for_visit: string | string[]
+  remark?: string
+}
+
+export type BookedResponse = {
+  data: {
+    data: {
+      results: Booked[]
+    }
   }
 }
