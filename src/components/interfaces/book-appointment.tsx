@@ -10,9 +10,7 @@ export type BookingPayload = {
 }
 
 export type BookingResponse = {
-  data: {
-    results: string
-  }
+  results: string
 }
 
 export type Booked = {

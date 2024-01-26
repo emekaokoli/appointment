@@ -22,7 +22,7 @@ export function CreateAppointment({
   providerId
 }: CreatProps) {
   const { getToken, getDecodedJwt } = authUtils;
-  const [userId, setUserId] = useState<number>(0)
+  const [userId, setUserId] = useState<number>(1)
   const { handleSubmit, register, formState: { errors } } = useForm<New_appointment>({
     defaultValues: initial_new_appointment,
     resolver: zodResolver(_new_appointment),
@@ -30,10 +30,12 @@ export function CreateAppointment({
 
 
   const { createAppointment } = useBookAppointment()
-  const token = useMemo(() => getToken(), [])
+  const token = useMemo(() => getToken(), [getToken])
   if (token) {
     const user_id = useMemo(() => getDecodedJwt(token), [token])?.user_id
     if (user_id) {
+      console.log({ userId: user_id });
+
       setUserId(user_id)
     }
   }
