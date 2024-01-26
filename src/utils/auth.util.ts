@@ -50,15 +50,20 @@ function isAuthenticated(): boolean {
   }
 }
 
-function getDecodedJwt(tkn = ''): decodedUser {
+function getDecodedJwt(tkn = ''): decodedUser | null {
   try {
     const token = tkn || getToken();
-    const decoded = jwtDecode<decodedUser>(token as string);
+    if (!token) {
+      return null;
+    }
+    const decoded = jwtDecode<decodedUser>(token);
     return decoded;
   } catch (error) {
-    return {} as decodedUser;
+    console.error('Error decoding JWT:', error);
+    return null;
   }
 }
+
 
 export const authUtils = {
   getDecodedJwt,

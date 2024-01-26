@@ -1,8 +1,10 @@
 import { date, object, string, z } from 'zod';
 
+const currentDate = new Date();
+const formattedDate = new Date(currentDate.getTime() + 30 * 60000);
 export const initial_new_appointment = {
-  start_date: new Date(),
-  end_date: new Date(),
+  start_date: currentDate,
+  end_date: formattedDate,
   reason_for_visit: '',
   remark: '',
 } as const;

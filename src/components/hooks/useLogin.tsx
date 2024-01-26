@@ -31,8 +31,6 @@ export const useLogin = () => {
 			}
 		},
 		onError: (error) => {
-			console.log({ error });
-
 			if (error) {
 				toast({
 					variant: 'destructive',

@@ -10,25 +10,35 @@ export const useBookAppointment = () => {
 
   const { mutateAsync, ...rest } = useMutation({
     mutationFn: async ({ payload }: { payload: BookingPayload }) => {
+      console.log({
+        payload,
+      });
+
       const { data } = await postRequest<BookingPayload, BookingResponse>({
         url: '/appointments',
         payload,
       });
       return data;
     },
-    onSuccess: ({ message }) => {
-      return toast({
-        variant: 'default',
-        title: 'Success',
-        description: message || 'Appointment successfully created',
-      });
+    onSuccess: ({ results }) => {
+      if (results) {
+        return toast({
+          variant: 'default',
+          title: 'Success',
+          description: results || 'Appointment successfully created',
+        });
+      }
     },
     onError: (error) => {
-      return toast({
-        variant: 'destructive',
-        title: 'Error',
-        description: error.message || 'An unexpected error occurred',
-      });
+      console.log(error);
+
+      if (error) {
+        return toast({
+          variant: 'destructive',
+          title: 'Error',
+          description: error.message || 'An unexpected error occurred',
+        });
+      }
     },
     onSettled: () => {
       queryClient.invalidateQueries({ queryKey: ['booking'] });

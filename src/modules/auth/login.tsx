@@ -54,7 +54,7 @@ export function UserLogin() {
           <h1 className="text-2xl font-bold text-center mb-1">Sign In</h1>
           <p className="text-center text-sm mb-8">
             Is this your first time here?
-            <Link className="text-green-600 hover:underline" to='/create-account'>
+            <Link className="text-green-600 hover:underline" to='/auth/register'>
               Create an account instead
             </Link>
           </p>

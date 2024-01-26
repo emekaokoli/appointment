@@ -1,3 +1,4 @@
+import { Button } from "@/common/button";
 import { useToast } from "@/common/use-toast";
 import { useGetAllProvidersById } from "@/components/hooks/useGetAllProvidersById";
 import { FreeSlot, eventProp } from "@/components/interfaces/calender";
@@ -6,6 +7,7 @@ import { EventInfo } from "@/components/modals/event_info";
 import { CreateAppointment } from "@/components/modals/new_appointment";
 import DisplayError from "@/errors/DisplayError";
 import { localizer } from '@/utils/date.util';
+import { Plus } from "lucide-react";
 import { useState } from "react";
 import { Calendar, Views } from "react-big-calendar";
 import "react-big-calendar/lib/css/react-big-calendar.css";
@@ -70,11 +72,10 @@ export function Scheduler() {
   return (
     <div className="bg-white p-4 shadow rounded-lg" style={{ height: 700 }}>
       <div className="flex items-center justify-end mb-4">
-
+        <Button variant="default" className=' text-light bg-primary gap-2 font-microGrotesk'><Plus size={15} />Schedule appointment</Button>
 
       </div>
       <EventInfoModal open={eventInfoModal} handleClose={() => setEventInfoModal(false)} currentEvent={eventData} />
-      <CreateAppointment open={openSlot} toggleOpenClose={handleCloseSlots} providerId={provider_id!} />
       <Calendar
         localizer={localizer}
         events={bookedSlots && bookedSlots.map((appointment) => ({
@@ -103,6 +104,8 @@ export function Scheduler() {
         className="bottom-[0.5px] text-black"
       />
       {isError ? <DisplayError error={error} title="Error" /> : null}
+      <CreateAppointment open={openSlot} toggleOpenClose={handleCloseSlots} providerId={provider_id!} />
+
     </div>
   )
 }

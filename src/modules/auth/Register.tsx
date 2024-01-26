@@ -17,7 +17,7 @@ export function CreateAccount() {
   const { state } = useLocation();
   const navigate = useNavigate()
   const [showPassword, setShowPassword] = useState(false);
-  const from = state?.path || '/appointments';
+  const from = state?.path || '/providers';
 
   const { handleSubmit, register, formState: { errors, isSubmitting, isValid } } = useForm<Register>({
     defaultValues: initialCreateData,
@@ -64,10 +64,10 @@ export function CreateAccount() {
                 Date of birth
               </Label>
               <div className="mt-1">
-                <Input autoComplete="date_of_brith" id="date_of_brith" placeholder="MM/DD/YYYY" required type="text" {...register('date_of_brith')} disabled={isSubmitting} />
+                <Input autoComplete="date_of_brith" id="date_of_brith" placeholder="MM/DD/YYYY" required type="text" {...register('date_of_birth')} disabled={isSubmitting} />
               </div>
-              {errors?.date_of_brith ? <p className='relative text-red-500 font-normal text-xl font-microGrotesk tracking-tight'>
-                {errors?.date_of_brith.message}
+              {errors?.date_of_birth ? <p className='relative text-red-500 font-normal text-xl font-microGrotesk tracking-tight'>
+                {errors?.date_of_birth.message}
               </p> : null}
             </div>
             <div>

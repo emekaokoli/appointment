@@ -11,7 +11,7 @@ export type BookingPayload = {
 
 export type BookingResponse = {
   data: {
-    message: string
+    results: string
   }
 }
 

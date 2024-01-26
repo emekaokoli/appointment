@@ -113,7 +113,7 @@ pnpm  build
 ``
 
 ### Live demo frontend
-https://booking-app-frontend-mu.vercel.app/
+https://appointment-frontend-3qff.onrender.com
 
 ### Live demo Backend 
 https://appointment-api-6tdx.onrender.com
